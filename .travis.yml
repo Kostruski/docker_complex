@@ -1,20 +1,23 @@
+language: generic 
 sudo: required
 services:
   - docker
 
 before_install:
-  - docker build -t marek/client-test -f ./client/Dockerfile.dev ./client
+  - docker build -t mkkos123/client-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true marek/client-test npm test
+  - docker run -e CI=true mkkos123/client-test npm test
 
 after_success:
+  # Log into the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  
   - docker build -t mkkos123/multi-client ./client
   - docker build -t mkkos123/multi-nginx ./nginx
   - docker build -t mkkos123/multi-server ./server
   - docker build -t mkkos123/multi-worker ./worker
-  # Log into the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
   # push images to docker-hub
   - docker push mkkos123/multi-client
   - docker push mkkos123/multi-nginx
