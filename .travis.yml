@@ -9,14 +9,14 @@ script:
   - docker run -e CI=true marek/client-test npm test
 
 after_success:
-  - docker build -t marek/multi-client ./client
-  - docker build -t marek/multi-nginx ./nginx
-  - docker build -t marek/multi-server ./server
-  - docker build -t marek/multi-worker ./worker
+  - docker build -t mkkos123/multi-client ./client
+  - docker build -t mkkos123/multi-nginx ./nginx
+  - docker build -t mkkos123/multi-server ./server
+  - docker build -t mkkos123/multi-worker ./worker
   # Log into the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push images to docker-hub
-  - docker push marek/multi-client
-  - docker push marek/multi-nginx
-  - docker push marek/multi-server
-  - docker push marek/multi-worker
+  - docker push mkkos123/multi-client
+  - docker push mkkos123/multi-nginx
+  - docker push mkkos123/multi-server
+  - docker push mkkos123/multi-worker
