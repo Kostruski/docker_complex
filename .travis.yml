@@ -13,10 +13,10 @@ after_success:
   - docker build -t marek/multi-nginx ./nginx
   - docker build -t marek/multi-server ./server
   - docker build -t marek/multi-worker ./worker
-# Log into the docker CLI
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-# push images to docker-hub
-- docker push marek/multi-client
-- docker push marek/multi-nginx
-- docker push marek/multi-server
-- docker push marek/multi-worker
+  # Log into the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push images to docker-hub
+  - docker push marek/multi-client
+  - docker push marek/multi-nginx
+  - docker push marek/multi-server
+  - docker push marek/multi-worker
