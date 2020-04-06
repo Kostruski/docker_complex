@@ -1,4 +1,4 @@
-language: generic 
+language: generic
 sudo: required
 services:
   - docker
@@ -10,14 +10,13 @@ script:
   - docker run -e CI=true mkkos123/client-test npm test
 
 after_success:
-  # Log into the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  
   - docker build -t mkkos123/multi-client ./client
   - docker build -t mkkos123/multi-nginx ./nginx
   - docker build -t mkkos123/multi-server ./server
   - docker build -t mkkos123/multi-worker ./worker
 
+  # Log into the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push images to docker-hub
   - docker push mkkos123/multi-client
   - docker push mkkos123/multi-nginx
