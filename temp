@@ -1,0 +1,9 @@
+user: postgres
+password: postgrespassword
+databasename: fibvalues
+
+
+multi-docker-postgres.cdld4p7hhqdd.eu-north-1.rds.amazonaws.com - db link
+
+
+sg-08c873f1c500e5 - security group
